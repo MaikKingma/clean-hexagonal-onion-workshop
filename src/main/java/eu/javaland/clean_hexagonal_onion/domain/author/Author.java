@@ -2,14 +2,18 @@ package eu.javaland.clean_hexagonal_onion.domain.author;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * The Author domain aggregate
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Author {
+    @Getter
     private Long id;
+    @Getter
     private String firstName;
+    @Getter
     private String lastName;
 
     /**
@@ -22,5 +26,14 @@ public class Author {
      */
     public static Author createAuthor(String firstName, String lastName) {
         return new Author(null, firstName, lastName);
+    }
+
+    /**
+     * Get Full name
+     *
+     * @return the full name of the Author
+     */
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }
