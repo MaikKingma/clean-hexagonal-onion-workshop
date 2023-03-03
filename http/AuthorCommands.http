@@ -1,0 +1,12 @@
+
+
+### Register an author
+POST /authors/commands/register HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "firstName": "PLACE_YOUR_FIRST_NAME",
+  "lastName": "PLACE_YOUR_LAST_NAME"
+}
+
