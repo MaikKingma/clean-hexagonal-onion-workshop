@@ -2,11 +2,14 @@ package eu.javaland.clean_hexagonal_onion.domain.author;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 /**
  * The Author domain aggregate
  */
+
+@Builder(builderMethodName = "restore")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Author {
     @Getter

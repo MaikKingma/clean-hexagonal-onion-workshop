@@ -27,9 +27,12 @@ public class AuthorJPA {
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "author_seq_gen")
     @SequenceGenerator(name = "author_seq_gen", sequenceName = "author_seq", allocationSize = 1)
+    @Getter
     private Long id;
 
+    @Getter
     private String firstName;
 
+    @Getter
     private String lastName;
 }
