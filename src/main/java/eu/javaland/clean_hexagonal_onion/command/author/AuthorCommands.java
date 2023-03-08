@@ -1,7 +1,6 @@
 package eu.javaland.clean_hexagonal_onion.command.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
-import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorFlow;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,16 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("authors/commands")
 public class AuthorCommands {
 
-    private final AuthorService authorService;
+    private final AuthorFlow authorFlow;
 
-    public AuthorCommands(AuthorService authorService) {
-        this.authorService = authorService;
+    public AuthorCommands(AuthorFlow authorFlow) {
+        this.authorFlow = authorFlow;
     }
 
     @PostMapping("/register")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void create(@RequestBody RegisterAuthorDTO registerAuthorDTO) {
-        var author = Author.createAuthor(registerAuthorDTO.firstName(), registerAuthorDTO.lastName());
-        authorService.registerAuthor(author);
+        authorFlow.registerAuthorByName(registerAuthorDTO.firstName(), registerAuthorDTO.lastName());
     }
 }

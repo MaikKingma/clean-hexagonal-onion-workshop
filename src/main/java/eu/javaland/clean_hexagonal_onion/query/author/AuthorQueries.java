@@ -1,6 +1,7 @@
 package eu.javaland.clean_hexagonal_onion.query.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDataService;
+import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorFlow;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,15 +18,15 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping(value = "/authors")
 public class AuthorQueries {
 
-    private final AuthorService authorService;
+    private final AuthorFlow authorFlow;
 
-    public AuthorQueries(AuthorService authorService) {
-        this.authorService = authorService;
+    public AuthorQueries(AuthorFlow authorFlow) {
+        this.authorFlow = authorFlow;
     }
 
     @GetMapping
     public List<AuthorView> getAll() {
-        return authorService.findAll().stream()
+        return authorFlow.getListOfAllAuthors().stream()
                 .map(AuthorView::new)
                 .collect(toList());
     }

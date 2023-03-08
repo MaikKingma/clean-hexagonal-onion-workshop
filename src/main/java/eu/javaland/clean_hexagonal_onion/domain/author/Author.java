@@ -27,7 +27,7 @@ public class Author {
      * @param lastName the last name of the author
      * @return the {@link  Author}
      */
-    public static Author createAuthor(String firstName, String lastName) {
+    public static Author create(String firstName, String lastName) {
         return new Author(null, firstName, lastName);
     }
 
