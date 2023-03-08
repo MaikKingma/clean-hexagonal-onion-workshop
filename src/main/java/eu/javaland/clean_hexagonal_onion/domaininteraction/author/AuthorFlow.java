@@ -4,7 +4,6 @@ import eu.javaland.clean_hexagonal_onion.domain.author.Author;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AuthorFlow {
@@ -17,12 +16,10 @@ public class AuthorFlow {
 
     public void registerAuthorByName(String firstName, String lastName) {
         Author author = Author.create(firstName, lastName);
-        authorDataService.save(author);
+        authorDataService.save(new AuthorDTO(author));
     }
 
     public List<AuthorDTO> getListOfAllAuthors() {
-        return authorDataService.findAll().stream()
-                .map(author -> new AuthorDTO(author.getFirstName(), author.getLastName()))
-                .collect(Collectors.toList());
+        return authorDataService.findAll();
     }
 }

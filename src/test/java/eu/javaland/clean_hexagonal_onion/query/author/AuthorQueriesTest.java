@@ -45,7 +45,7 @@ class AuthorQueriesTest {
         var authorJPA = AuthorJPA.builder().firstName("firstName").lastName("lastName").build();
         authorRepository.save(authorJPA);
         authorRepository.flush();
-        var expected = new AuthorView(new AuthorDTO("firstName", "lastName"));
+        var expected = new AuthorView(new AuthorDTO(1L, "firstName", "lastName"));
         // when
         MvcResult result = mockMvc.perform(get("/authors").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

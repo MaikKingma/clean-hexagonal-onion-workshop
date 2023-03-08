@@ -1,6 +1,5 @@
 package eu.javaland.clean_hexagonal_onion.query.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
 import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

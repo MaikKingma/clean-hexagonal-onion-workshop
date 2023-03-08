@@ -1,8 +1,7 @@
 package eu.javaland.clean_hexagonal_onion.data.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
+import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDataService;
-import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +18,15 @@ public class AuthorDataServiceImpl implements AuthorDataService {
     }
 
     @Override
-    public void save(Author author) {
-        log.info("registering author {}", author.getFullName());
-        authorRepository.save(AuthorMapper.mapToJPA(author));
+    public void save(AuthorDTO authorDTO) {
+        log.info("registering authorDTO {}", authorDTO.getFullName());
+        authorRepository.save(AuthorJPAMapper.mapToJPA(authorDTO));
     }
 
     @Override
-    public List<Author> findAll() {
+    public List<AuthorDTO> findAll() {
         return authorRepository.findAll().stream()
-                .map(AuthorMapper::mapToDomain)
+                .map(authorJPA -> new AuthorDTO(authorJPA.getId(), authorJPA.getFirstName(), authorJPA.getLastName()))
                 .toList();
     }
 }
