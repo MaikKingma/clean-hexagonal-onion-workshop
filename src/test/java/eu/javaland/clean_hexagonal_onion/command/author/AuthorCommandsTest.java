@@ -36,12 +36,12 @@ class AuthorCommandsTest {
     @Test
     void registerAndGet() throws Exception {
         //given
-        var registerAuthorDTOJson = objectMapper.writeValueAsString(new RegisterAuthorDTO("firstName", "lastName"));
+        var registerAuthorPayloadJson = objectMapper.writeValueAsString(new RegisterAuthorPayload("firstName", "lastName"));
         var expected = AuthorJPA.builder().firstName("firstName").lastName("lastName").build();
         //when
         mockMvc.perform(post("/authors/commands/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(registerAuthorDTOJson))
+                        .content(registerAuthorPayloadJson))
                 .andExpect(status().isAccepted());
         authorRepository.flush();
         // then

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="04-create-book-table" author="Maik Kingma">
+        <comment>Create book table</comment>
+        <createTable tableName="book">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="book_id_pk" nullable="false"/>
+            </column>
+            <column name="title" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="published" type="boolean" defaultValue="false"/>
+            <column name="publisher_id" type="uuid"/>
+            <column name="isbn" type="text"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="author_id"
+                baseTableName="book"
+                constraintName="FK_AUTHOR_BOOK"
+                deferrable="false"
+                initiallyDeferred="false"
+                onDelete="RESTRICT"
+                onUpdate="RESTRICT"
+                referencedColumnNames="id"
+                referencedTableName="author"
+                validate="true"/>
+    </changeSet>
+</databaseChangeLog>

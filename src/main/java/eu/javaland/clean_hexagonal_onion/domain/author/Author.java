@@ -1,9 +1,12 @@
 package eu.javaland.clean_hexagonal_onion.domain.author;
 
+import eu.javaland.clean_hexagonal_onion.domain.book.Book;
+import eu.javaland.clean_hexagonal_onion.domain.book.Genre;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+
 
 /**
  * The Author domain aggregate
@@ -31,12 +34,7 @@ public class Author {
         return new Author(null, firstName, lastName);
     }
 
-    /**
-     * Get Full name
-     *
-     * @return the full name of the Author
-     */
-    public String getFullName() {
-        return firstName + " " + lastName;
+    public Book writeManuscript(String title, Genre genre) {
+        return Book.createManuscript(title, genre, this);
     }
 }

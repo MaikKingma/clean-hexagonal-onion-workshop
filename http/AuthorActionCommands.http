@@ -1,0 +1,13 @@
+
+
+### Register an author
+### TODO chnage the author id to something that exists in your DB
+POST /authors/10001/commands/writeBook HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "title": "PLACE_YOUR_TILE",
+  "genre": "HORROR"
+}
+

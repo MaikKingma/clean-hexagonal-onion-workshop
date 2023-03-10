@@ -26,7 +26,18 @@ public class AuthorDataServiceImpl implements AuthorDataService {
     @Override
     public List<AuthorDTO> findAll() {
         return authorRepository.findAll().stream()
-                .map(authorJPA -> new AuthorDTO(authorJPA.getId(), authorJPA.getFirstName(), authorJPA.getLastName()))
+                .map(this::getDTOFromJPA)
                 .toList();
+    }
+
+    private AuthorDTO getDTOFromJPA(AuthorJPA authorJPA) {
+        return new AuthorDTO(authorJPA.getId(), authorJPA.getFirstName(), authorJPA.getLastName());
+    }
+
+    @Override
+    public AuthorDTO findById(Long authorId) {
+        return authorRepository.findById(authorId)
+                .map(this::getDTOFromJPA)
+                .orElseThrow(() -> new AuthorNotFoundException(String.format("Author with id %d could not be found!", authorId)));
     }
 }
