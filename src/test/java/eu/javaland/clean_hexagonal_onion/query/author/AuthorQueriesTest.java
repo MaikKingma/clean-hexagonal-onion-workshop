@@ -36,7 +36,7 @@ class AuthorQueriesTest {
 
     @BeforeEach
     void beforeAll() {
-        entityManager.createNativeQuery("DELETE FROM author WHERE true;");
+        entityManager.createNativeQuery("DELETE FROM author WHERE true;").executeUpdate();
     }
 
     @Test
