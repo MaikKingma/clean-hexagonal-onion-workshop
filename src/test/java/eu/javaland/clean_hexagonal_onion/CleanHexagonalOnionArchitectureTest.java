@@ -27,6 +27,6 @@ public class CleanHexagonalOnionArchitectureTest {
             .whereLayer("command").mayNotBeAccessedByAnyLayer()
             .whereLayer("query").mayNotBeAccessedByAnyLayer()
             .whereLayer("data").mayNotBeAccessedByAnyLayer()
-            .whereLayer("domain interaction").mayOnlyBeAccessedByLayers("command", "query", "data")
+            .whereLayer("domain interaction").mayOnlyBeAccessedByLayers("command", "query", "data", "acl")
             .whereLayer("domain").mayOnlyBeAccessedByLayers("domain interaction");
 }
