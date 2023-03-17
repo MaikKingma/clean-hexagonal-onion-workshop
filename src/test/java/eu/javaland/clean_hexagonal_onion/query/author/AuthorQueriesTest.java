@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.javaland.clean_hexagonal_onion.data.author.AuthorJPA;
 import eu.javaland.clean_hexagonal_onion.data.author.AuthorRepository;
 import eu.javaland.clean_hexagonal_onion.domain.author.Author;
-import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +31,15 @@ class AuthorQueriesTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private EntityManager entityManager;
 
     @BeforeEach
     void beforeAll() {
-        authorRepository.deleteAll();
+        entityManager.createNativeQuery("DELETE FROM author WHERE true;");
     }
 
     @Test
+    @Transactional
     void getAll() throws Exception {
         // given
         var authorJPA = AuthorJPA.builder().firstName("firstName").lastName("lastName").build();
@@ -47,11 +47,12 @@ class AuthorQueriesTest {
         authorRepository.flush();
         var expected = new AuthorView(new AuthorDTO(1L, "firstName", "lastName"));
         // when
-        MvcResult result = mockMvc.perform(get("/authors").accept(MediaType.APPLICATION_JSON))
+        MvcResult result = mockMvc.perform(get("/authors")
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
         var resultingAuthorViews = objectMapper.readValue(
-                result.getResponse().getContentAsString(), new TypeReference<List<AuthorView>>() { });
+                result.getResponse().getContentAsString(), new TypeReference<List<AuthorView>>() {});
         // then
         assertThat(resultingAuthorViews)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
