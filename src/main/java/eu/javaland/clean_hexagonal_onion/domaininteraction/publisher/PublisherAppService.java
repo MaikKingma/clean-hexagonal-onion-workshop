@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface PublisherAppService {
     List<PublisherDTO> getAllPublishers();
+
+    PublisherDTO getPublisherById(String publisherId);
 }

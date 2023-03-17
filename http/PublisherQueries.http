@@ -10,3 +10,8 @@ Accept: application/json
 GET /publishers HTTP/1.1
 Host: localhost:8081
 Accept: application/json
+
+### Get authors
+GET /publishers/80553ae1-2ef8-4adf-8fa8-d551684a9ea3 HTTP/1.1
+Host: localhost:8081
+Accept: application/json

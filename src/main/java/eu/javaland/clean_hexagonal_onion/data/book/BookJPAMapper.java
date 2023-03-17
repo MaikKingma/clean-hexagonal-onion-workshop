@@ -5,7 +5,7 @@ import eu.javaland.clean_hexagonal_onion.domaininteraction.book.BookDTO;
 
 public class BookJPAMapper {
     static BookJPA mapToJPA(BookDTO bookDTO) {
-        return BookJPA.builder()
+        BookJPA bookJPA = BookJPA.builder()
                 .id(bookDTO.id())
                 .title(bookDTO.title())
                 .author(AuthorJPAMapper.mapToJPA(bookDTO.authorDTO()))
@@ -14,5 +14,7 @@ public class BookJPAMapper {
                 .published(bookDTO.published())
                 .publisherId(bookDTO.publisherId())
                 .build();
+        bookJPA.registerDomainEvents(bookDTO.domainEvents());
+        return bookJPA;
     }
 }

@@ -12,4 +12,6 @@ public interface BookDataService {
     List<BookDTO> findAll();
 
     List<BookDTO> findByPartialTitle(String title);
+
+    BookDTO findById(Long bookId);
 }
