@@ -18,6 +18,7 @@ public class BookDomainMapper {
                 .published(bookDTO.published())
                 .publisherId(bookDTO.publisherId())
                 .isbn(bookDTO.isbn())
+                .domainEvents(bookDTO.domainEvents())
                 .build();
     }
 }
