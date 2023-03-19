@@ -21,6 +21,7 @@ public class CleanHexagonalOnionArchitectureTest {
             .layer("command").definedBy("eu.javaland.clean_hexagonal_onion.command..")
             .layer("query").definedBy("eu.javaland.clean_hexagonal_onion.query..")
             .layer("data").definedBy("eu.javaland.clean_hexagonal_onion.data..")
+            .layer("acl").definedBy("eu.javaland.clean_hexagonal_onion.acl..")
             .layer("domain interaction").definedBy("eu.javaland.clean_hexagonal_onion.domaininteraction..")
             .layer("domain").definedBy("eu.javaland.clean_hexagonal_onion.domain..")
 
