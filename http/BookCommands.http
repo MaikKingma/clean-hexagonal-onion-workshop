@@ -1,0 +1,13 @@
+
+
+### Publish a book
+### TODO chnage the book id to something that exists in your DB and the publisherID to one that exists on your local
+### instance of the publishing service
+POST /books/10001/commands/publish HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "publisherId": "80553ae1-2ef8-4adf-8fa8-d551684a9ea3"
+}
+

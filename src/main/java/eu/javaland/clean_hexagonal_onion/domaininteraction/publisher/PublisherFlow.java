@@ -1,6 +1,5 @@
 package eu.javaland.clean_hexagonal_onion.domaininteraction.publisher;
 
-import eu.javaland.clean_hexagonal_onion.domain.book.Book;
 import eu.javaland.clean_hexagonal_onion.domaininteraction.book.BookDTO;
 import eu.javaland.clean_hexagonal_onion.domaininteraction.book.BookDataService;
 import eu.javaland.clean_hexagonal_onion.domaininteraction.book.BookDomainMapper;
@@ -13,19 +12,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class PublisherFlow {
 
+    private final PublisherAppService publisherAppService;
     private final BookDataService bookDataService;
 
-    public PublisherFlow(BookDataService bookDataService) {
+    public PublisherFlow(PublisherAppService publisherAppService, BookDataService bookDataService) {
+        this.publisherAppService = publisherAppService;
         this.bookDataService = bookDataService;
     }
 
-    public void publishBook(BookDTO bookDTO, PublisherDTO publisherDTO) {
-        Book book = BookDomainMapper.mapToDomain(bookDTO);
+    public void publishBook(Long bookId, String publisherId) {
+        var publisherDTO = publisherAppService.getPublisherById(publisherId);
+        var bookDTO = bookDataService.findById(bookId);
+        var book = BookDomainMapper.mapToDomain(bookDTO);
+
         if (!book.canBePublished()) {
             throw new BookAlreadyInPublishingException("Book already in publishing!");
         }
         book.requestPublishing(publisherDTO.id());
-        BookDTO updatedBookDto = new BookDTO(book);
+        var updatedBookDto = new BookDTO(book);
         bookDataService.save(updatedBookDto);
     }
 

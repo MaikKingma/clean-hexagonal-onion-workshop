@@ -14,4 +14,10 @@ public interface BookDataService {
     List<BookDTO> findByPartialTitle(String title);
 
     BookDTO findById(Long bookId);
+
+    class BookNotFoundException  extends RuntimeException{
+        public BookNotFoundException(String errorMessage) {
+            super(errorMessage);
+        }
+    }
 }

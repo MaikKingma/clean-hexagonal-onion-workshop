@@ -60,8 +60,8 @@ class BookQueriesTest {
                 .genre("ROMANCE")
                 .title("romance-book")
                 .build();
-        var expectedBookView1 = new BookView("horror-book", "HORROR", "firstName lastName");
-        var expectedBookView2 = new BookView("romance-book", "ROMANCE", "firstName lastName");
+        var expectedBookView1 = new BookView(1L, "horror-book", "HORROR", "firstName lastName");
+        var expectedBookView2 = new BookView(2L, "romance-book", "ROMANCE", "firstName lastName");
 
         entityManager.persist(book1);
         entityManager.persist(book2);
@@ -100,7 +100,7 @@ class BookQueriesTest {
                 .genre("ROMANCE")
                 .title("romance-book")
                 .build();
-        var expectedBookView = new BookView("horror-book", "HORROR", "firstName lastName");
+        var expectedBookView = new BookView(4L, "horror-book", "HORROR", "firstName lastName");
 
         entityManager.persist(book1);
         entityManager.persist(book2);

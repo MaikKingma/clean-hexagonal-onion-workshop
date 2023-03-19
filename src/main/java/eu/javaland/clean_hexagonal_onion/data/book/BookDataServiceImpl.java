@@ -6,6 +6,7 @@ import eu.javaland.clean_hexagonal_onion.domaininteraction.book.BookDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,10 +42,17 @@ public class BookDataServiceImpl implements BookDataService {
                 .toList();
     }
 
+    @Override
+    public BookDTO findById(Long bookId) {
+        return bookRepository.findById(bookId)
+                .map(this::getDTOFromJPA)
+                .orElseThrow(() -> new BookNotFoundException(String.format("Book with id %d could not be found!", bookId)));
+    }
+
     private BookDTO getDTOFromJPA(BookJPA bookJPA) {
         var authorJPA = bookJPA.getAuthor();
         var authorDTO = new AuthorDTO(authorJPA.getId(), authorJPA.getFirstName(), authorJPA.getLastName());
         return new BookDTO(bookJPA.getId(), authorDTO, bookJPA.getTitle(), bookJPA.getGenre(),
-                bookJPA.getPublisherId(), bookJPA.isPublished(), bookJPA.getIsbn());
+                bookJPA.getPublisherId(), bookJPA.isPublished(), bookJPA.getIsbn(), new ArrayList<>());
     }
 }
