@@ -2,6 +2,7 @@ package eu.javaland.clean_hexagonal_onion.query.author;
 
 import eu.javaland.clean_hexagonal_onion.domain.author.Author;
 import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,12 +28,12 @@ class AuthorQueriesTest {
     @Test
     void getAll() {
         // given
-        List<Author> mockedAuthorListResponse = List.of(Author.restore().id(1L).firstName("firstName").lastName(
-                "lastName").build());
-        when(authorService.findAll()).thenReturn(mockedAuthorListResponse);
+        List<AuthorDTO> mockedAuthorListResponse =
+                List.of(new AuthorDTO(Author.restore().id(1L).firstName("firstName").lastName("lastName").build()));
+        when(authorFlow.getListOfAllAuthors()).thenReturn(mockedAuthorListResponse);
         // when then
         List<AuthorView> result = authorQueries.getAll();
-        verify(authorService, times(1)).findAll();
+        verify(authorFlow, times(1)).getListOfAllAuthors();
         assertThat(result).containsExactly(new AuthorView(1L, "firstName lastName"));
     }
 }

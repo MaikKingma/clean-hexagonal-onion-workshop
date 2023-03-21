@@ -3,7 +3,7 @@ package eu.javaland.clean_hexagonal_onion.query.author;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.javaland.clean_hexagonal_onion.data.author.AuthorJPA;
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
+import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,15 +46,15 @@ class AuthorQueriesIntegrationTest {
         var authorJPA = AuthorJPA.builder().firstName("firstName").lastName("lastName").build();
         entityManager.persist(authorJPA);
         entityManager.flush();
-        AuthorView expected = new AuthorView(Author.createAuthor("firstName", "lastName"));
-        // when then
+        var expected = new AuthorView(new AuthorDTO(1L, "firstName", "lastName"));
+        // when
         MvcResult result = mockMvc.perform(get("/authors")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
-
         var resultingAuthorViews = objectMapper.readValue(
                 result.getResponse().getContentAsString(), new TypeReference<List<AuthorView>>() { });
+        // then
         assertThat(resultingAuthorViews)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
                 .containsExactly(expected);
