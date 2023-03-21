@@ -1,62 +1,38 @@
 package eu.javaland.clean_hexagonal_onion.query.author;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.javaland.clean_hexagonal_onion.data.author.AuthorJPA;
 import eu.javaland.clean_hexagonal_onion.domain.author.Author;
-import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.BeforeEach;
+import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 class AuthorQueriesTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Mock
+    private AuthorService authorService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private EntityManager entityManager;
-
-    @BeforeEach
-    void beforeAll() {
-        entityManager.createNativeQuery("DELETE FROM author WHERE true;").executeUpdate();
-    }
+    @InjectMocks
+    private AuthorQueries authorQueries;
 
     @Test
-    @Transactional
-    void getAll() throws Exception {
+    void getAll() {
         // given
-        var authorJPA = AuthorJPA.builder().firstName("firstName").lastName("lastName").build();
-        entityManager.persist(authorJPA);
-        entityManager.flush();
-        AuthorView expected = new AuthorView(Author.createAuthor("firstName", "lastName"));
+        List<Author> mockedAuthorListResponse = List.of(Author.restore().id(1L).firstName("firstName").lastName(
+                "lastName").build());
+        when(authorService.findAll()).thenReturn(mockedAuthorListResponse);
         // when then
-        MvcResult result = mockMvc.perform(get("/authors")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        var resultingAuthorViews = objectMapper.readValue(
-                result.getResponse().getContentAsString(), new TypeReference<List<AuthorView>>() { });
-        assertThat(resultingAuthorViews)
-                .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
-                .containsExactly(expected);
+        List<AuthorView> result = authorQueries.getAll();
+        verify(authorService, times(1)).findAll();
+        assertThat(result).containsExactly(new AuthorView(1L, "firstName lastName"));
     }
 }
