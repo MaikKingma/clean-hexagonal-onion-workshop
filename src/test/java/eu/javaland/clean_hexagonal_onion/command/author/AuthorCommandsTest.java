@@ -1,35 +1,34 @@
 package eu.javaland.clean_hexagonal_onion.command.author;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 class AuthorCommandsTest {
+    @Mock
+    private AuthorService authorService;
 
-    @Autowired
-    private MockMvc mockMvc;
+    @InjectMocks
+    private AuthorCommands authorCommands;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
+    // This is not a very expressive test, we still lack a lot of functionality to be able to write good tests. We
+    // need to make due with what we have for now.
     @Test
-    void register() throws Exception {
-        //given
-        var registerAuthorDTOJson = objectMapper.writeValueAsString(new RegisterAuthorDTO("firstName", "lastName"));
-
-        //when //then
-        mockMvc.perform(post("/authors/commands/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(registerAuthorDTOJson))
-                .andExpect(status().isAccepted());
+    private void create() {
+        // given
+        var registerAuthorDTO = new RegisterAuthorDTO("firstName", "lastName");
+        // when
+        authorCommands.create(registerAuthorDTO);
+        // then
+        Author expectedAuthor = Author.createAuthor(registerAuthorDTO.firstName(),
+                registerAuthorDTO.lastName());
+        verify(authorService, times(1)).registerAuthor(expectedAuthor);
     }
+
 }
