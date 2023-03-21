@@ -4,10 +4,12 @@ import eu.javaland.clean_hexagonal_onion.domain.author.Author;
 import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -19,18 +21,18 @@ class AuthorCommandsTest {
     @InjectMocks
     private AuthorCommands authorCommands;
 
-    // This is not a very expressive test, we still lack a lot of functionality to be able to write good tests. We
-    // need to make due with what we have for now.
     @Test
-    private void create() {
+    void create() {
         // given
         var registerAuthorDTO = new RegisterAuthorDTO("firstName", "lastName");
+        Author expected = Author.restore().firstName("firstName").lastName("lastName").build();
         // when
         authorCommands.create(registerAuthorDTO);
         // then
-        Author expectedAuthor = Author.createAuthor(registerAuthorDTO.firstName(),
-                registerAuthorDTO.lastName());
-        verify(authorService, times(1)).registerAuthor(expectedAuthor);
+        ArgumentCaptor<Author> argumentCaptor = ArgumentCaptor.forClass(Author.class);
+        verify(authorService, times(1)).registerAuthor(argumentCaptor.capture());
+        Author actual = argumentCaptor.getValue();
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
 }

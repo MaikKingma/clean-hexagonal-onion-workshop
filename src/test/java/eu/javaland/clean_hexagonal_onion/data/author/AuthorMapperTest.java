@@ -18,4 +18,19 @@ class AuthorMapperTest {
         AuthorJPA result = AuthorMapper.mapToJPA(Author.createAuthor("firstName", "lastName"));
         assertThat(result).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected);
     }
+
+    @Test
+    void mapToDomain() {
+        // given
+        Author expected = Author.restore()
+                .firstName("firstName")
+                .lastName("lastName")
+                .build();
+        // when
+        Author result = AuthorMapper.mapToDomain(AuthorJPA.builder()
+                .firstName("firstName")
+                .lastName("lastName")
+                .build());
+        assertThat(result).usingRecursiveComparison().isEqualTo(expected);
+    }
 }
