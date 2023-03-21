@@ -30,13 +30,4 @@ public class Author {
     public static Author create(String firstName, String lastName) {
         return new Author(null, firstName, lastName);
     }
-
-    /**
-     * Get Full name
-     *
-     * @return the full name of the Author
-     */
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
 }
