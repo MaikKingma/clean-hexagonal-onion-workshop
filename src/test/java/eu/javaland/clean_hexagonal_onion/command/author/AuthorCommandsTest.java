@@ -21,7 +21,7 @@ class AuthorCommandsTest {
     @Test
     void create() {
         // given
-        var registerAuthorDTO = new RegisterAuthorDTO("firstName", "lastName");
+        var registerAuthorDTO = new RegisterAuthorPayload("firstName", "lastName");
         // when
         authorCommands.create(registerAuthorDTO);
         // then

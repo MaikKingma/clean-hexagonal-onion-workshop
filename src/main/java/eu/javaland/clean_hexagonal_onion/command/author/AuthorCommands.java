@@ -20,7 +20,7 @@ public class AuthorCommands {
 
     @PostMapping("/register")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public void create(@RequestBody RegisterAuthorDTO registerAuthorDTO) {
-        authorFlow.registerAuthorByName(registerAuthorDTO.firstName(), registerAuthorDTO.lastName());
+    public void create(@RequestBody RegisterAuthorPayload registerAuthorPayload) {
+        authorFlow.registerAuthorByName(registerAuthorPayload.firstName(), registerAuthorPayload.lastName());
     }
 }
