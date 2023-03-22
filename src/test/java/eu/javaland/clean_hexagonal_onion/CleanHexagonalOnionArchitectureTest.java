@@ -21,12 +21,13 @@ public class CleanHexagonalOnionArchitectureTest {
             .layer("command").definedBy("eu.javaland.clean_hexagonal_onion.command..")
             .layer("query").definedBy("eu.javaland.clean_hexagonal_onion.query..")
             .layer("data").definedBy("eu.javaland.clean_hexagonal_onion.data..")
+            .layer("acl").definedBy("eu.javaland.clean_hexagonal_onion.acl..")
             .layer("domain interaction").definedBy("eu.javaland.clean_hexagonal_onion.domaininteraction..")
             .layer("domain").definedBy("eu.javaland.clean_hexagonal_onion.domain..")
 
             .whereLayer("command").mayNotBeAccessedByAnyLayer()
             .whereLayer("query").mayNotBeAccessedByAnyLayer()
             .whereLayer("data").mayNotBeAccessedByAnyLayer()
-            .whereLayer("domain interaction").mayOnlyBeAccessedByLayers("command", "query", "data")
+            .whereLayer("domain interaction").mayOnlyBeAccessedByLayers("command", "query", "data", "acl")
             .whereLayer("domain").mayOnlyBeAccessedByLayers("domain interaction");
 }
