@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,27 +28,30 @@ class BookFlowTest {
     void findAllBooks() {
         // given
         when(bookDataService.findAll()).thenReturn(List.of(
-                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null),
-                new BookDTO(2L, new AuthorDTO(2L, "Hanna", "Banana"), "title2", "genre2", null, false, null)));
+                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null,
+                        new ArrayList<>()),
+                new BookDTO(2L, new AuthorDTO(2L, "Hanna", "Banana"), "title2", "genre2", null, false, null,
+                        new ArrayList<>())));
         // when
         List<BookDTO> actualResult = bookFlow.findAllBooks();
         // then
         verify(bookDataService, times(1)).findAll();
         assertThat(actualResult).containsExactlyInAnyOrder(
-                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null),
-                new BookDTO(2L, new AuthorDTO(2L, "Hanna", "Banana"), "title2", "genre2", null, false, null));
+                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null,
+                        new ArrayList<>()),
+                new BookDTO(2L, new AuthorDTO(2L, "Hanna", "Banana"), "title2", "genre2", null, false, null, new ArrayList<>()));
     }
 
     @Test
     void findAllBooksWithMatchingTitle() {
         // given
         when(bookDataService.findByPartialTitle("title")).thenReturn(List.of(
-                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null)));
+                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null, new ArrayList<>())));
         // when
         bookFlow.findAllBooksWithMatchingTitle("title");
         // then
         verify(bookDataService, times(1)).findByPartialTitle("title");
         assertThat(bookFlow.findAllBooksWithMatchingTitle("title")).containsExactlyInAnyOrder(
-                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null));
+                new BookDTO(1L, new AuthorDTO(1L, "Tom", "Someone"), "title", "genre", null, false, null, new ArrayList<>()));
     }
 }

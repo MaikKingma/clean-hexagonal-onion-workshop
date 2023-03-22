@@ -58,10 +58,6 @@ public class Book {
         return publisherId == null && !published;
     }
 
-    public void clearDomainEvents() {
-        this.domainEvents = new ArrayList<>();
-    }
-
     public void updatePublishingInfo(String isbn) {
         this.isbn = isbn;
         this.published = true;

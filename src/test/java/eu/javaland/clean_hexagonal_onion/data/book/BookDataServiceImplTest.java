@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -24,7 +26,7 @@ class BookDataServiceImplTest {
     @Test
     void save() {
         // when
-        bookDataServiceImpl.save(new BookDTO(1L, new AuthorDTO(1L, null, null), "title", "genre", null, false, null));
+        bookDataServiceImpl.save(new BookDTO(1L, new AuthorDTO(1L, null, null), "title", "genre", null, false, null, new ArrayList<>()));
         // then
         verify(bookRepository, times(1)).save(any(BookJPA.class));
     }

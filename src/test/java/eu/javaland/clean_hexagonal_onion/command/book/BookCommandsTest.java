@@ -45,7 +45,7 @@ class BookCommandsTest {
 
     @BeforeEach
     void beforeAll() {
-        entityManager.createNativeQuery("DELETE FROM author where true; DELETE FROM book where true;")
+        entityManager.createNativeQuery("DELETE FROM book where true; DELETE FROM author where true;")
                 .executeUpdate();
     }
 
