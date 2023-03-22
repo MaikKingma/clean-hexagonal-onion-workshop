@@ -5,6 +5,8 @@ import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import eu.javaland.clean_hexagonal_onion.domaininteraction.book.BookDTO;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BookJPAMapperTest {
@@ -13,7 +15,7 @@ class BookJPAMapperTest {
     void mapToJPA() {
         AuthorDTO authorDTO = new AuthorDTO(1L, "firstName", "lastName");
         BookJPA bookJPA = BookJPAMapper.mapToJPA(new BookDTO(1L, authorDTO, "title", "genre",
-                null, false, null));
+                null, false, null, new ArrayList<>()));
         assertThat(bookJPA).usingRecursiveComparison().isEqualTo(BookJPA.builder()
                 .id(1L)
                 .title("title")
