@@ -1,6 +1,6 @@
-package eu.javaland.clean_hexagonal_onion.data.author;
+package nl.maikkingma.clean_hexagonal_onion.data.author;
 
-import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
+import nl.maikkingma.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,5 +1,6 @@
-package eu.javaland.clean_hexagonal_onion.domaininteraction.author;
+package nl.maikkingma.clean_hexagonal_onion.domaininteraction.author;
 
+import nl.maikkingma.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

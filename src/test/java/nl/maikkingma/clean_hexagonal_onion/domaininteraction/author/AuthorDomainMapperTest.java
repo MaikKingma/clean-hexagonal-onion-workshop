@@ -1,6 +1,7 @@
-package eu.javaland.clean_hexagonal_onion.domaininteraction.author;
+package nl.maikkingma.clean_hexagonal_onion.domaininteraction.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
+import nl.maikkingma.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
 import org.junit.jupiter.api.Test;
 
 class AuthorDomainMapperTest {
