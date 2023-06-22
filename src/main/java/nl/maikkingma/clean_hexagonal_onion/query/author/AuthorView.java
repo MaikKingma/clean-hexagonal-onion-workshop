@@ -1,6 +1,6 @@
-package eu.javaland.clean_hexagonal_onion.query.author;
+package nl.maikkingma.clean_hexagonal_onion.query.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
 
 /**
  * @author Maik Kingma

@@ -1,6 +1,6 @@
-package eu.javaland.clean_hexagonal_onion.query.author;
+package nl.maikkingma.clean_hexagonal_onion.query.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.AuthorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
