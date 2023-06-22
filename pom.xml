@@ -10,11 +10,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>eu.javaland</groupId>
+	<groupId>nl.maikkingma</groupId>
 	<artifactId>clean_hexagonal_onion</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Clean Hexagonal Onion</name>
-	<description>Javaland 2023 workshop: Clean Hexagonal Onion with a Dash of DDD in Spring</description>
+	<description>Workshop: Clean Hexagonal Onion with a Dash of DDD in Spring</description>
 
 	<properties>
 		<java.version>17</java.version>
