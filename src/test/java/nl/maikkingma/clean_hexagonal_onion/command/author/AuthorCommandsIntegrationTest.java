@@ -1,8 +1,8 @@
 package nl.maikkingma.clean_hexagonal_onion.command.author;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.javaland.clean_hexagonal_onion.data.author.AuthorJPA;
-import eu.javaland.clean_hexagonal_onion.data.author.AuthorRepository;
+import nl.maikkingma.clean_hexagonal_onion.data.author.AuthorJPA;
+import nl.maikkingma.clean_hexagonal_onion.data.author.AuthorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package eu.javaland.clean_hexagonal_onion.data.author;
+package nl.maikkingma.clean_hexagonal_onion.data.author;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,6 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
