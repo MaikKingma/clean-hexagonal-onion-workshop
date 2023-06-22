@@ -1,7 +1,7 @@
-package eu.javaland.clean_hexagonal_onion.query.author;
+package nl.maikkingma.clean_hexagonal_onion.query.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
-import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.AuthorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

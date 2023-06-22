@@ -1,12 +1,12 @@
-package eu.javaland.clean_hexagonal_onion.query.author;
+package nl.maikkingma.clean_hexagonal_onion.query.author;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.javaland.clean_hexagonal_onion.data.author.AuthorJPA;
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import nl.maikkingma.clean_hexagonal_onion.data.author.AuthorJPA;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
