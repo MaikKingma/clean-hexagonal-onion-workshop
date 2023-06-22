@@ -1,7 +1,7 @@
-package eu.javaland.clean_hexagonal_onion.command.author;
+package nl.maikkingma.clean_hexagonal_onion.command.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
-import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

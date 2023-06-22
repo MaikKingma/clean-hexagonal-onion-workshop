@@ -1,4 +1,4 @@
-package eu.javaland.clean_hexagonal_onion.domain.author;
+package nl.maikkingma.clean_hexagonal_onion.domain.author;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

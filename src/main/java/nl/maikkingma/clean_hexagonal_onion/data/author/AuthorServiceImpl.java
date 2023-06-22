@@ -1,7 +1,7 @@
-package eu.javaland.clean_hexagonal_onion.data.author;
+package nl.maikkingma.clean_hexagonal_onion.data.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
-import eu.javaland.clean_hexagonal_onion.domain.author.AuthorService;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
