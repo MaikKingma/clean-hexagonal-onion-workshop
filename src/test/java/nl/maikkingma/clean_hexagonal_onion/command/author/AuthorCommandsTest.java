@@ -1,4 +1,4 @@
-package eu.javaland.clean_hexagonal_onion.command.author;
+package nl.maikkingma.clean_hexagonal_onion.command.author;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
