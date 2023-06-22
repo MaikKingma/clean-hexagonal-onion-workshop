@@ -1,4 +1,4 @@
-package eu.javaland.clean_hexagonal_onion.command.author;
+package nl.maikkingma.clean_hexagonal_onion.command.author;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
