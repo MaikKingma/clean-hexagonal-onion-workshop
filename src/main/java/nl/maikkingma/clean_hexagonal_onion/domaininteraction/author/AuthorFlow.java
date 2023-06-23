@@ -1,6 +1,6 @@
-package eu.javaland.clean_hexagonal_onion.domaininteraction.author;
+package nl.maikkingma.clean_hexagonal_onion.domaininteraction.author;
 
-import eu.javaland.clean_hexagonal_onion.domain.author.Author;
+import nl.maikkingma.clean_hexagonal_onion.domain.author.Author;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

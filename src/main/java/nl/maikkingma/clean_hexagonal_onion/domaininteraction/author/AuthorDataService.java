@@ -1,4 +1,4 @@
-package eu.javaland.clean_hexagonal_onion.domaininteraction.author;
+package nl.maikkingma.clean_hexagonal_onion.domaininteraction.author;
 
 import java.util.List;
 

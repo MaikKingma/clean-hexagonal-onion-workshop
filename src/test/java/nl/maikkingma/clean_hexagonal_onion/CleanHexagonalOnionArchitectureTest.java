@@ -18,11 +18,11 @@ public class CleanHexagonalOnionArchitectureTest {
     static final ArchRule layer_dependencies_are_respected =
             layeredArchitecture().consideringAllDependencies()
 
-            .layer("command").definedBy("eu.javaland.clean_hexagonal_onion.command..")
-            .layer("query").definedBy("eu.javaland.clean_hexagonal_onion.query..")
-            .layer("data").definedBy("eu.javaland.clean_hexagonal_onion.data..")
-            .layer("domain interaction").definedBy("eu.javaland.clean_hexagonal_onion.domaininteraction..")
-            .layer("domain").definedBy("eu.javaland.clean_hexagonal_onion.domain..")
+            .layer("command").definedBy("nl.maikkingma.clean_hexagonal_onion.command..")
+            .layer("query").definedBy("nl.maikkingma.clean_hexagonal_onion.query..")
+            .layer("data").definedBy("nl.maikkingma.clean_hexagonal_onion.data..")
+            .layer("domain interaction").definedBy("nl.maikkingma.clean_hexagonal_onion.domaininteraction..")
+            .layer("domain").definedBy("nl.maikkingma.clean_hexagonal_onion.domain..")
 
             .whereLayer("command").mayNotBeAccessedByAnyLayer()
             .whereLayer("query").mayNotBeAccessedByAnyLayer()

@@ -1,6 +1,6 @@
 package nl.maikkingma.clean_hexagonal_onion.command.author;
 
-import eu.javaland.clean_hexagonal_onion.domaininteraction.author.AuthorFlow;
+import nl.maikkingma.clean_hexagonal_onion.domaininteraction.author.AuthorFlow;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
