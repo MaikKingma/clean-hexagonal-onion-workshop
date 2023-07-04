@@ -41,12 +41,13 @@ class AuthorActionCommandsIntegrationTest {
     private EntityManager entityManager;
 
     @BeforeEach
-    void beforeAll() {
+    void beforeEach() {
         entityManager.createNativeQuery("DELETE FROM author where true; DELETE FROM book where true;")
                 .executeUpdate();
     }
 
     @Test
+    @Transactional
     void registerAndGet() throws Exception {
         //given
         var registerAuthorPayloadJson = objectMapper.writeValueAsString(new RegisterAuthorPayload("firstName", "lastName"));
