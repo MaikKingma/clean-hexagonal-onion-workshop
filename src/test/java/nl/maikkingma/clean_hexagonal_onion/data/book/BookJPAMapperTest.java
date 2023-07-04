@@ -5,6 +5,8 @@ import nl.maikkingma.clean_hexagonal_onion.domaininteraction.author.AuthorDTO;
 import nl.maikkingma.clean_hexagonal_onion.domaininteraction.book.BookDTO;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class BookJPAMapperTest {
 
     @Test
