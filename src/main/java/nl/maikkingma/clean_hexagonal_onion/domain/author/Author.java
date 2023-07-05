@@ -1,5 +1,7 @@
 package nl.maikkingma.clean_hexagonal_onion.domain.author;
 
+import nl.maikkingma.clean_hexagonal_onion.domain.book.Book;
+import nl.maikkingma.clean_hexagonal_onion.domain.book.Genre;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -11,8 +11,7 @@ import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
  * @author Maik Kingma
  */
 
-@AnalyzeClasses(packages = "nl.maikkingma.clean_hexagonal_onion", importOptions =
-                                                                          {ImportOption.DoNotIncludeTests.class})
+@AnalyzeClasses(packages = "nl.maikkingma.clean_hexagonal_onion", importOptions = {ImportOption.DoNotIncludeTests.class})
 public class CleanHexagonalOnionArchitectureTest {
 
     @ArchTest
