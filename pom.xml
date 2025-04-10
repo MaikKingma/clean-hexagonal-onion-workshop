@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>eu.javaland</groupId>
+    <groupId>nl.maikkingma</groupId>
     <artifactId>clean_hexagonal_onion</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Clean Hexagonal Onion</name>
